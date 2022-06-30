@@ -16,16 +16,24 @@ end size_strobes;
 
 architecture Behavioral of size_strobes is
 
-signal sig1 : STD_LOGIC_VECTOR ( 7 downto 0 );
-alias sigsize : std_logic_vector is sig1 ( 1 downto 0 );
-alias sigzero : std_logic_vector is sig1 ( 7 downto 2 );
 
 
 begin
 
-	sigzero <= "000000";
-	sigsize <= size;
-	strobes <= sig1;
+	if (size="01") then
+		
+		strobes <= "00000001";
+
+	elsif ( size = "10" ) then
+		
+		strobes <= "00000011";
+
+	elsif ( size = "11" ) then
+		
+		strobes <= "00001111";
+
+	end if; 
+
 		
 
 end Behavioral;
