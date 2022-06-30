@@ -17,8 +17,8 @@ end size_strobes;
 architecture Behavioral of size_strobes is
 
 signal sig1 : STD_LOGIC_VECTOR ( 7 downto 0 );
-alias sigsize : std_logic_vector is sig1 ( 7 downto 6 );
-alias sigzero : std_logic_vector is sig1 ( 5 downto 0 );
+alias sigsize : std_logic_vector is sig1 ( 1 downto 0 );
+alias sigzero : std_logic_vector is sig1 ( 7 downto 2 );
 
 
 begin
