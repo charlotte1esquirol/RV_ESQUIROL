@@ -1,8 +1,3 @@
--- A Mealy machine has outputs that depend on both the state and
--- the inputs.	When the inputs change, the outputs are updated
--- immediately, without waiting for a clock edge.  The outputs
--- can be written more than once per state or per clock cycle.
-
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -72,8 +67,7 @@ begin
 		end if;
 	end process;
 	
-	-- Determine the output based only on the current state
-	-- (do not wait for a clock edge).
+
 	process (state)
 	begin
 		case state is

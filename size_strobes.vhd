@@ -20,19 +20,25 @@ architecture Behavioral of size_strobes is
 
 begin
 
-	if (size="01") then
+	process 
+
+	begin
+
+	if (size="00") then
 		
 		strobes <= "00000001";
 
-	elsif ( size = "10" ) then
+	elsif ( size = "01" ) then
 		
 		strobes <= "00000011";
 
-	elsif ( size = "11" ) then
+	elsif ( size = "10" ) then
 		
 		strobes <= "00001111";
 
 	end if; 
+
+	end process;
 
 		
 

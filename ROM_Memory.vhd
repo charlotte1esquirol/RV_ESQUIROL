@@ -4,6 +4,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use work.rv_esquirol_pkg.all;
 use work.rv_esquirol_controlunit_image_pkg.all;
+use work.rv_esquirol_controlunit_image_pkg.all;
 
 
 entity ROM_Memory is
@@ -22,7 +23,6 @@ architecture Behavioral of ROM_Memory is
 
 
 constant mem_rom : mem32_t(0 to 31) := mem32_init_f(control_unit_image, 32);
-
 
 begin 
 
