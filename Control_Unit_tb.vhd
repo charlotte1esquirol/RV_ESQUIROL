@@ -23,7 +23,6 @@ generic (DWIDTH: natural := 32  );  -- Number of data bits per input/output
 	CONTROL_SIG : out STD_LOGIC_VECTOR ( 31 downto 0));
 
 
-end Control_Unit;
 
 end component; 
 
@@ -70,101 +69,28 @@ process
 
 	sRESET<='0';
 	sMEMBUSY<='1';
-	sINSTR<="
+	sINSTR<="00000000000000000101000000010011";
 
 
-	-- On initialise les valeurs des selecteurs toutes à 0
+	-- 
 
-	sSEL1<='0';
-	sSEL2<="00";
-	sSELOP<="0000";
+	sMEMBUSY<='0';
+
+	wait for 30 ns; 
+
+	sINSTR<="01000000000000000101000000010011";
 
 	wait for 30 ns;
 
-	-- On change SEL1 à 1
+	sINSTR<="00000000000000000001000000110011";
 
-	sSEL1<='1';
 	wait for 30 ns;
 
-	-- On remet SEL1 à 0 et change SEL2 à 1
+	-- On change MEMBUSY
 
-	sSEL2<="01";
+	sMEMBUSY<='1';
 	wait for 30 ns;
 
-	-- On change encore SEL2 à 2
-
-	sSEL2<="10";
-	wait for 30 ns;
-
-	-- On change encore SEL2 à 3
-
-	sSEL2<="10";
-	wait for 30 ns;
-
-	-- On remet SEL1 à 0 et SEL2 à 0 et change SELOP à 1
-
-	sSELOP<="0001";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 2
-
-	sSELOP<="0010";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 3
-
-	sSELOP<="0011";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 4
-
-	sSELOP<="0100";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 5
-
-	sSELOP<="0101";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 6
-
-	sSELOP<="0110";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 7
-
-	sSELOP<="0111";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 8
-
-	sSELOP<="1000";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 9
-
-	sSELOP<="1001";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 10
-
-	sSELOP<="1010";
-	wait for 30 ns;
-
-	-- On change encore SELOP à 11
-
-	sSELOP<="1011";
-	wait for 30 ns;
-
-	-- On vérifie que ca marche pour tout
-
-	sSEL1<='1';
-	sSEL2<="11";
-	wait for 30 ns;
-
-	sSEL2<="10";
-	sSELOP<="0110";
-	wait for 200 ns;
 
 
 	

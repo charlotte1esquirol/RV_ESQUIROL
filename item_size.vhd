@@ -140,7 +140,7 @@ begin
 	register1 : flipflop port map ( D=>BSTR_OR, LOAD=>first_cycle, CLK=>CLK_size, Q=>unaligned ); 
 	register2 : registera generic map (A=>B8) port map ( D=>BYTESTRB, LOAD=>first_cycle, CLK=>CLK_size, Q=>BSTR_reg ); 
 	mux2to1_1 : MUX2TO1 generic map (DWIDTH=>DWIDTH4) port map (SEL=>op2, DATA0=>BSTR_regB1, DATA1=>BSTR_regB2, RESULT=>OUT_MUX1);
-	mux2to1_2 : MUX2TO1 generic map (DWIDTH=>DWIDTH4) port map (SEL=>first_cycle, DATA0=>OUT_MUX1, DATA1=>BYTESTRB, RESULT=>PSTRB);
+	mux2to1_2 : MUX2TO1 generic map (DWIDTH=>DWIDTH4) port map (SEL=>first_cycle, DATA0=>OUT_MUX1, DATA1=>BSTRB1, RESULT=>PSTRB);
 
 	
 end architecture Behavioral;

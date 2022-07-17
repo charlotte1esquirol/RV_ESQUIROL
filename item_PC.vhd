@@ -12,8 +12,8 @@ entity item_PC is
 	iPC : in STD_LOGIC;
 	CLK_PC : in STD_LOGIC;
 	RST_PC : in STD_LOGIC;
-	Bim_PC : in STD_LOGIC_VECTOR( 19 downto 0 );
-	Jim_PC : in STD_LOGIC_VECTOR ( 19 downto 0 );
+	Bim_PC : in STD_LOGIC_VECTOR( 31 downto 0 );
+	Jim_PC : in STD_LOGIC_VECTOR ( 31 downto 0 );
 	rs1_PC : in STD_LOGIC_VECTOR ( 31 downto 0 );
 	sel1PC : in STD_LOGIC;
 	sel2PC : in STD_LOGIC;
@@ -28,6 +28,7 @@ architecture Behavioral of item_PC is
 
 
 	constant DWIDTH32 : natural := 32;
+	constant DWIDTH20 : natural := 20;
 
 
 

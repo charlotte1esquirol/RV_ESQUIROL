@@ -23,7 +23,7 @@ alias bit3 : std_logic is Din ( 3 );
 
 
 begin
-	process
+	process ( Din )
 
 	begin
 

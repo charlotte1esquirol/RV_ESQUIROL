@@ -70,16 +70,16 @@ process
 
     -- on commence par un reset pour tout bien mettre à 0
 
-	sReset<='0';
+	sReset<='1';
 	wait for 30 ns;
 
-    -- cas où aucune permission ( ni read ni write ) et que Write_address = 0 pour tester si r0 est bien ignoré.
+    -- cas où aucune permission ( ni read ni write )
 
-   	sRESET<='1'; 
+   	sRESET<='0'; 
 
 	sWD<="00000000000000000000000000000011";
 
-        sWA<="00000";
+        sWA<="00001";
 
         sWC<='0';
 
@@ -91,7 +91,8 @@ process
 
         sR1C<='0';
 
-  
+        
+
         wait for 30 ns;
 
      -- cas où w_command='1'
@@ -112,69 +113,11 @@ process
 
         wait for 30 ns;
 
-
-
-    -- On va maintenant remplir le tableau regfile
-	sR0C<='0';
-	sR1C<='0'; 
-
-	sWD<="00000000000000000000000001100100";
-        sWA<="00000";
-	wait for 20 ns;
-
-	sWD<="00000000000000000000000001100011";
-        sWA<="00001";
-	wait for 20 ns;
-
-	sWD<="00000000000000000000000001100010";
-        sWA<="00010";
-	wait for 20 ns;
-
-	sWD<="00000000000000000000000001100001";
-        sWA<="00011";
-	wait for 20 ns;
-
-
-
-	sWD<="00000000000000000000000001000111";
-        sWA<="11101";
-	wait for 20 ns;
-
-	sWD<="00000000000000000000000001000110";
-        sWA<="11110";
-	wait for 20 ns;
-
-	sWD<="00000000000000000000000001000101";
-        sWA<="11111";
-	wait for 20 ns;
-
-    -- On va maintenant lire les registres
-	sR0C<='1';
-	sR1C<='1'; 
-
-
-	sR0A<="00000";
-	sR1A<="00001";
-	wait for 20 ns;
-
-	sR0A<="00001";
-	sR1A<="00010";
-	wait for 20 ns;
-
-	sR0A<="00011";
-	sR1A<="11101";
-	wait for 20 ns;
-
-	sR0A<="11110";
-	sR1A<="11111";
-	wait for 20 ns;
-	
-
      -- on reset  
 
      sRESET<='1'; 
 
-        wait for 30 ns; 
+        wait for 200 ns; 
 
      end process;
 

@@ -34,7 +34,7 @@ begin
 
     begin
 
-	if (reset = '1') then
+	if (reset = '0') then
 
           -- reset action here
           for i in 0 to 31 loop

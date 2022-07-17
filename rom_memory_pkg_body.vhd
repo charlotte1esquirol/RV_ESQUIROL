@@ -1,13 +1,6 @@
-library IEEE;
-use IEEE.std_logic_1164.all;
-use IEEE.numeric_std.all;
-library work;
-use work.rv_esquirol_pkg.all;
-
-
 -- Auto-generated memory initialization file from ihex file
-package rv_esquirol_controlunit_image_pkg is
-	constant control_unit_image : mem32_t := (
+package body rv_esquirol_rom_memory_pkg is
+	constant rom_memory : mem32_t := (
 		x"00000006",
 		x"40000011",
 		x"80000000",
@@ -264,5 +257,5 @@ package rv_esquirol_controlunit_image_pkg is
 		x"80000000",
 		x"80000000",
 		x"80000000");
-end package rv_esquirol_controlunit_image_pkg;
+end package rv_esquirol_rom_memory_pkg;
 -- File end

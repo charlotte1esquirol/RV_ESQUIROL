@@ -18,11 +18,11 @@ entity item_controlu is
 	rs1 : out STD_LOGIC_VECTOR ( 4 downto 0 );
 	rs2 : out STD_LOGIC_VECTOR ( 4 downto 0 );
 	rd : out STD_LOGIC_VECTOR ( 4 downto 0);
-	Iim : out STD_LOGIC_VECTOR ( 11 downto 0);
-	Sim : out STD_LOGIC_VECTOR ( 11 downto 0);
-	Uim : out STD_LOGIC_VECTOR ( 19 downto 0);
-	Bim : out STD_LOGIC_VECTOR ( 19 downto 0);
-	Jim : out STD_LOGIC_VECTOR ( 19 downto 0);
+	Iim : out STD_LOGIC_VECTOR ( 31 downto 0);
+	Sim : out STD_LOGIC_VECTOR ( 31 downto 0);
+	Uim : out STD_LOGIC_VECTOR ( 31 downto 0);
+	Bim : out STD_LOGIC_VECTOR ( 31 downto 0);
+	Jim : out STD_LOGIC_VECTOR ( 31 downto 0);
 
 	CONTROL_signal : out STD_LOGIC_VECTOR ( 31 downto 0));
 
@@ -62,11 +62,11 @@ architecture Behavioral of item_controlu is
 	component Immediate
 
   Port (RI :  in STD_LOGIC_VECTOR(31 downto 0);
-        I : out STD_LOGIC_VECTOR(11 downto 0);
-	S : out STD_LOGIC_VECTOR(11 downto 0);
-    	U : out STD_LOGIC_VECTOR(19 downto 0);
-	B : out STD_LOGIC_VECTOR(19 downto 0);
-	J : out STD_LOGIC_VECTOR(19 downto 0));
+        I : out STD_LOGIC_VECTOR(31 downto 0);
+	S : out STD_LOGIC_VECTOR(31 downto 0);
+    	U : out STD_LOGIC_VECTOR(31 downto 0);
+	B : out STD_LOGIC_VECTOR(31 downto 0);
+	J : out STD_LOGIC_VECTOR(31 downto 0));
 
 	end component Immediate ;
 

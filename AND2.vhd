@@ -21,7 +21,7 @@ architecture Behavioral of AND2 is
 
 
 begin
-	process
+	process (Din1, Din2)
 
 	begin
 

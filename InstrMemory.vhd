@@ -2,8 +2,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use work.rv_esquirol_pkg.all;
-use work.rv_esquirol_controlunit_image_pkg.all;
-use work.rom_mem_pkg_body.all;
+use work.rv_esquirol_test_image_pkg.all;
+
 
 
 
@@ -29,7 +29,7 @@ end InstrMemory;
 architecture Behavioral of InstrMemory is 
 
 
-constant mem_rom : mem32_t(0 to 31) := mem32_init_f(rom_memory, 32);
+constant mem_rom : mem32_t(0 to 31) := mem32_init_f(test_image, 32);
 
 alias B0 : std_logic is PSTRB ( 0 );
 alias B1 : std_logic is PSTRB ( 1 );

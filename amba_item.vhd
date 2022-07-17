@@ -31,7 +31,7 @@ architecture Behavioral of amba_item is
 	RST_ma : in STD_LOGIC;
 	PRDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
 	PREADY : in STD_LOGIC;
-	PADDR : out STD_LOGIC_VECTOR ( 31 downto 0 );
+	PADDR : out STD_LOGIC_VECTOR ( 29 downto 0 );
 	PSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
 	PWDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
 	PWRITE : out STD_LOGIC;
@@ -97,13 +97,13 @@ generic (X: natural := 16  );  -- Number of data bits per input/output
 
 signal PREADYa : STD_LOGIC;
 signal PRDATAa : STD_LOGIC_VECTOR( 31 downto 0);
-signal PADDRa :  STD_LOGIC_VECTOR ( 31 downto 0 );
+signal PADDRa :  STD_LOGIC_VECTOR ( 29 downto 0 );
 signal PSTRBa : STD_LOGIC_VECTOR ( 3 downto 0 );
 signal PWDATAa : STD_LOGIC_VECTOR ( 31 downto 0 );
 signal PWRITEa : STD_LOGIC;
 signal PENABLEa : STD_LOGIC;
 signal PREQa : STD_LOGIC;
-alias add : std_logic_vector is PADDRa ( 31 downto (31-(SLAVE_DECODER_A-1)) );
+alias add : std_logic_vector is PADDRa ( 29 downto (29-(SLAVE_DECODER_A-1)) );
 alias addX : std_logic_vector is PADDRa ( XX-1 downto 0 );
 
 signal PSELa : STD_LOGIC_VECTOR ( SLAVE_DECODER_S-1 downto 0 );

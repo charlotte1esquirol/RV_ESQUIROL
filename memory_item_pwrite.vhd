@@ -51,7 +51,7 @@ signal inputQ: STD_LOGIC;
 begin
 
 	
-	mux1 : MUX2TO1single generic map (DWIDTH=>N) port map (SEL=>first_cycle, DATA0=>wr_i, DATA1=>inputQ, RESULT=>PWRITE);
+	mux1 : MUX2TO1single generic map (DWIDTH=>N) port map (SEL=>first_cycle, DATA1=>wr_i, DATA0=>inputQ, RESULT=>PWRITE);
 	regiister1 : flipflop port map (D=>wr_i, LOAD=>first_cycle, CLK=>CLKA, Q=>inputQ);
 
 	

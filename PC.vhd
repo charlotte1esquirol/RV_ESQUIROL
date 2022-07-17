@@ -31,7 +31,7 @@ signal PC_INTERN : STD_LOGIC_VECTOR ( 31 downto 0 );
 
     		begin
 			
-    			if (reset = '1') then
+    			if (reset = '0') then
 
          			 -- reset action here
          			PC_INTERN <= "00000000000000000000000000000000";

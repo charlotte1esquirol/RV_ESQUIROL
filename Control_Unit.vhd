@@ -20,7 +20,7 @@ end Control_Unit;
 
 architecture Behavioral of Control_Unit is
 
-	constant N : natural := 32;
+	constant N : natural := 8;
 
 	component InstrNumber
 

@@ -17,16 +17,16 @@ end half_extend;
 
 architecture Behavioral of half_extend is
 
-signal sig1 : STD_LOGIC_VECTOR ( 31 downto 0 );
+
 
 alias MSB : std_logic is Din ( 15 );
-alias sigsize : std_logic_vector is sig1 ( 15 downto 0 );
-alias sigzero : std_logic_vector is sig1 ( 31 downto 8 );
+alias sigsize : std_logic_vector is Dout ( 15 downto 0 );
+alias sigzero : std_logic_vector is Dout ( 31 downto 16 );
 
 
 begin
 
-	process
+	process ( Din, unsigned1 )
 
 	begin
 
@@ -34,12 +34,12 @@ begin
 
 		sigzero <= "0000000000000000";
 		sigsize <= Din;
-		Dout <= sig1;
+
 
 	else 
 		sigzero <= "1111111111111111"; 
 		sigsize <= Din;
-		Dout <= sig1;
+
 
 	end if;
 

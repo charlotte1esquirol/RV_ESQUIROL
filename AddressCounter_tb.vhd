@@ -63,12 +63,12 @@ process
 
 	-- On reset pour bien tout initialiser
 
-	sRESET<='1'; 
+	sRESET<='0'; 
 	wait for 30 ns;
 
 	-- On initialise les valeurs 
 
-	sRESET<='0';
+	sRESET<='1';
 	sWAITMEM<='1';
 	sMEMBUSY<='1';
 	sLOAD_VAL<="11110000";

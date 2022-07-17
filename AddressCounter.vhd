@@ -35,7 +35,7 @@ begin
 	
 	
 
-	if (reset = '1') then
+	if (reset = '0') then
           -- reset action here
 		VALU <= "00000000";
 		VALU_bis <= "00000000";

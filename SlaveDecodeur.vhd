@@ -23,32 +23,32 @@ architecture Behavioral of SlaveDecodeur is
 
 begin
 
-process
+process ( ADDRESS, ENABLE )
 
 begin
 
 
 
 	if ( ENABLE='0' ) then
-		SEL <= "000";
-		NUM_SLAVE <="--";
+		SEL <= "00";
+		NUM_SLAVE <="-";
 
 	elsif ( ENABLE='1' ) then
 
 		if (std_match(ADDRESS,SLAVE_DECODER_SAX(0))) then
-			SEL<="001";
-			NUM_SLAVE<="00";
+			SEL<="01";
+			NUM_SLAVE<="0";
 
 		elsif (std_match(ADDRESS,SLAVE_DECODER_SAX(1))) then
-			SEL<="010";
-			NUM_SLAVE<="10";
+			SEL<="10";
+			NUM_SLAVE<="1";
 
-		elsif (std_match(ADDRESS,SLAVE_DECODER_SAX(2))) then
-			SEL<="100";
-			NUM_SLAVE<="11";
+		--elsif (std_match(ADDRESS,SLAVE_DECODER_SAX(2))) then
+			--SEL<="11";
+			--NUM_SLAVE<="11";
 		else 
-			SEL<="000";
-			NUM_SLAVE<="--";
+			SEL<="00";
+			NUM_SLAVE<="-";
 		
 		end if;
 		

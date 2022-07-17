@@ -30,7 +30,7 @@ architecture rtl of StateMachine is
 begin
 	process (clk, rst)
 	begin
-		if rst = '1' then
+		if rst = '0' then
 			state <= stOp1A;
 		elsif (rising_edge(clk)) then
 			-- Determine the next state synchronously, based on

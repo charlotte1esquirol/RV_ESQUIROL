@@ -156,6 +156,7 @@ signal RD_bex : STD_LOGIC_VECTOR ( 31 downto 0 );
 signal RD_hex : STD_LOGIC_VECTOR ( 31 downto 0 );
 
 signal OUT_MUX1 : STD_LOGIC_VECTOR ( 31 downto 0 );
+signal fin : STD_LOGIC_VECTOR ( 31 downto 0 );
 
 
 
@@ -177,9 +178,11 @@ begin
 	byteextend : byte_extend port map ( Din=>RDSR_1, Dout=>RD_bex, unsigned1=>unsigned_i); 
 	halfextend : half_extend port map ( Din=>RDSR_2, Dout=>RD_hex, unsigned1=>unsigned_i); 
 	mux3to1_1 : MUX3TO1 generic map (DWIDTH=>DWIDTH32) port map (SEL=>size_i, DATA0=>RD_bex, DATA1=>RD_hex, DATA2=>RDSR, RESULT=>OUT_MUX1);
-	register2 : registera generic map (A=>B32) port map ( D=>OUT_MUX1, LOAD=>PREADY, CLK=>CLK_rdata, Q=>rdata_o ); 
+	register2 : registera generic map (A=>B32) port map ( D=>OUT_MUX1, LOAD=>PREADY, CLK=>CLK_rdata, Q=>fin ); 
 
 
+	RDATA_1<=PRDATA;
+	rdata_o<=fin;
 	rdata_unbuff_o <= PRDATA;
 	
 end architecture Behavioral;

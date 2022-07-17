@@ -68,12 +68,12 @@ process
 
     -- on commence par un reset pour tout bien mettre à 0
 
-	sReset<='1';
+	sReset<='0';
 	wait for 30 ns;
 
     -- cas où aucune permission ( ni read ni write )
 
-   	sRESET<='0'; 
+   	sRESET<='1'; 
 
 	sWD<="00000000000000000000000000000011";
 

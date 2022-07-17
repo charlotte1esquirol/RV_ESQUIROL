@@ -69,12 +69,12 @@ process
 
     -- on commence par un reset pour tout bien mettre à 0
 
-	sRST<='1';
+	sRST<='0';
 	wait for 30 ns;
 
     -- cas où on reste à s0
 
-   	sRST<='0'; 
+   	sRST<='1'; 
 
 	strigger<='0';
 

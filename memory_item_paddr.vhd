@@ -14,7 +14,7 @@ entity memory_item_paddr is
 	CLK_paddr : in STD_LOGIC;
 	op2 : in STD_LOGIC;
 	ALIGNEMENT : out STD_LOGIC_VECTOR ( 1 downto 0);
-	PADDR : out STD_LOGIC_VECTOR ( 31 downto 0));
+	PADDR : out STD_LOGIC_VECTOR ( 29 downto 0));
 
 
 end memory_item_paddr;

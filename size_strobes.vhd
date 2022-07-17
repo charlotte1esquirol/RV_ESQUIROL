@@ -20,7 +20,7 @@ architecture Behavioral of size_strobes is
 
 begin
 
-	process 
+	process ( size )
 
 	begin
 

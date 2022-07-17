@@ -21,7 +21,7 @@ generic (DWIDTH: natural := 32  );  -- Number of data bits per input/outp
 	unsigned_im: in STD_LOGIC;
 	size_im : in STD_LOGIC_VECTOR (1 downto 0);
 	wdata_im : in STD_LOGIC_VECTOR (31 downto 0);
-	PADDRm : out STD_LOGIC_VECTOR (31 downto 0);
+	PADDRm : out STD_LOGIC_VECTOR (29 downto 0);
 	PSTRBm : out STD_LOGIC_VECTOR (3 downto 0);
 	PWDATAm : out STD_LOGIC_VECTOR (31 downto 0);
 	PWRITEm : out STD_LOGIC;
@@ -155,7 +155,7 @@ port (
 	CLK_paddr : in STD_LOGIC;
 	op2 : in STD_LOGIC;
 	ALIGNEMENT : out STD_LOGIC_VECTOR ( 1 downto 0);
-	PADDR : out STD_LOGIC_VECTOR ( 31 downto 0));
+	PADDR : out STD_LOGIC_VECTOR ( 29 downto 0));
 
 	end component memory_item_paddr ;
 

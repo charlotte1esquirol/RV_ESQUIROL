@@ -63,11 +63,11 @@ process
 
 	-- On reset pour bien tout initialiser
 
-	sRESET<='1'; 
+	sRESET<='0'; 
 	wait for 30 ns;
 	-- On initialise les valeurs pour que rien ne se passe
 
-	sRESET<='0';
+	sRESET<='1';
 	sLOAD<='0';
 	sLOADVAL<="11110000000000000000000000000000";
 	sINC<='0';

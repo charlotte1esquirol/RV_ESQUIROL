@@ -13,7 +13,7 @@ entity RV_1_1 is
 	RST_ma : in STD_LOGIC;
 	PRDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
 	PREADY : in STD_LOGIC;
-	PADDR : out STD_LOGIC_VECTOR ( 31 downto 0 );
+	PADDR : out STD_LOGIC_VECTOR ( 29 downto 0 );
 	PSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
 	PWDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
 	PWRITE : out STD_LOGIC;
@@ -43,11 +43,11 @@ architecture Behavioral of RV_1_1 is
 	rs1 : out STD_LOGIC_VECTOR ( 4 downto 0 );
 	rs2 : out STD_LOGIC_VECTOR ( 4 downto 0 );
 	rd : out STD_LOGIC_VECTOR ( 4 downto 0);
-	Iim : out STD_LOGIC_VECTOR ( 11 downto 0);
-	Sim : out STD_LOGIC_VECTOR ( 11 downto 0);
-	Uim : out STD_LOGIC_VECTOR ( 19 downto 0);
-	Bim : out STD_LOGIC_VECTOR ( 19 downto 0);
-	Jim : out STD_LOGIC_VECTOR ( 19 downto 0);
+	Iim : out STD_LOGIC_VECTOR ( 31 downto 0);
+	Sim : out STD_LOGIC_VECTOR ( 31 downto 0);
+	Uim : out STD_LOGIC_VECTOR ( 31 downto 0);
+	Bim : out STD_LOGIC_VECTOR ( 31 downto 0);
+	Jim : out STD_LOGIC_VECTOR ( 31 downto 0);
 
 	CONTROL_signal : out STD_LOGIC_VECTOR ( 31 downto 0));
  
@@ -60,8 +60,8 @@ architecture Behavioral of RV_1_1 is
 	iPC : in STD_LOGIC;
 	CLK_PC : in STD_LOGIC;
 	RST_PC : in STD_LOGIC;
-	Bim_PC : in STD_LOGIC_VECTOR( 19 downto 0 );
-	Jim_PC : in STD_LOGIC_VECTOR ( 19 downto 0 );
+	Bim_PC : in STD_LOGIC_VECTOR( 31 downto 0 );
+	Jim_PC : in STD_LOGIC_VECTOR ( 31 downto 0 );
 	rs1_PC : in STD_LOGIC_VECTOR ( 31 downto 0 );
 	sel1PC : in STD_LOGIC;
 	sel2PC : in STD_LOGIC;
@@ -128,7 +128,7 @@ generic (DWIDTH: natural := 32  );  -- Number of data bits per input/output
 	unsigned_im: in STD_LOGIC;
 	size_im : in STD_LOGIC_VECTOR (1 downto 0);
 	wdata_im : in STD_LOGIC_VECTOR (31 downto 0);
-	PADDRm : out STD_LOGIC_VECTOR (31 downto 0);
+	PADDRm : out STD_LOGIC_VECTOR (29 downto 0);
 	PSTRBm : out STD_LOGIC_VECTOR (3 downto 0);
 	PWDATAm : out STD_LOGIC_VECTOR (31 downto 0);
 	PWRITEm : out STD_LOGIC;
@@ -152,11 +152,16 @@ signal rs2_intern : STD_LOGIC_VECTOR(4 downto 0);
 signal funct3_intern : STD_LOGIC_VECTOR(2 downto 0);
 alias funct31 : std_logic_vector is funct3_intern ( 1 downto 0 );
 alias funct32 : std_logic is funct3_intern ( 2 );
-signal I : STD_LOGIC_VECTOR(11 downto 0);
-signal U : STD_LOGIC_VECTOR(19 downto 0);
-signal S : STD_LOGIC_VECTOR(11 downto 0);
-signal B : STD_LOGIC_VECTOR(19 downto 0);
-signal J : STD_LOGIC_VECTOR(19 downto 0);
+signal I : STD_LOGIC_VECTOR(31 downto 0);
+signal U : STD_LOGIC_VECTOR(31 downto 0);
+signal S : STD_LOGIC_VECTOR(31 downto 0);
+signal B : STD_LOGIC_VECTOR(31 downto 0);
+signal J : STD_LOGIC_VECTOR(31 downto 0);
+signal Iext : STD_LOGIC_VECTOR(31 downto 0);
+signal Uext : STD_LOGIC_VECTOR(31 downto 0);
+signal Sext : STD_LOGIC_VECTOR(31 downto 0);
+signal Bext : STD_LOGIC_VECTOR(31 downto 0);
+signal Jext : STD_LOGIC_VECTOR(31 downto 0);
 signal uINSTR : STD_LOGIC_VECTOR(31 downto 0);
 alias iPC_intern : std_logic is uINSTR ( 5 );
 alias sel1PC_intern : std_logic is uINSTR ( 21 );
