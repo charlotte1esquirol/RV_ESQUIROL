@@ -83,7 +83,6 @@ generic (X: natural := 16  );  -- Number of data bits per input/output
 
   Port (
 	CLK : in STD_LOGIC;
-	RST : in STD_LOGIC;
 	PRDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
 	PREADY : out STD_LOGIC;
 	PADDRX : in STD_LOGIC_VECTOR ( X-1 downto 0 );
@@ -137,7 +136,7 @@ begin
 	SlaveDec : SlaveDecodeur port map (ADDRESS=>add, ENABLE=>PREQa, SEL=>PSELa, NUM_SLAVE=>NSLAVE);
 	muxdata : MUX2TO1 generic map (DWIDTH=>DWIDTH32) port map ( DATA0=>PRDATA0, DATA1=>PRDATA1, SEL=>NSLAVEsingle, RESULT=>PRDATAa); 
 	muxready : MUX2TO1single port map ( DATA0=>PREADY0, DATA1=>PREADY1, SEL=>NSLAVEsingle, RESULT=>PREADYa); 
-	slave1 : InstrMemory generic map (X=>XX) port map ( CLK=>PCLK, RST=>PRSTn, PRDATA=>PRDATA0, PREADY=>PREADY0, PADDRX=>addX, PSTRB=>PSTRBa, PENABLE=>PENABLEa, PSEL=>PSEL0); 
+	slave1 : InstrMemory generic map (X=>XX) port map ( CLK=>PCLK, PRDATA=>PRDATA0, PREADY=>PREADY0, PADDRX=>addX, PSTRB=>PSTRBa, PENABLE=>PENABLEa, PSEL=>PSEL0); 
 
 	
 

@@ -19,6 +19,7 @@ component ROM_Memory
          DATA : out STD_LOGIC_VECTOR (31 downto 0);
          WAITMEM : in STD_LOGIC;
 	 MEMBUSY : in STD_LOGIC;
+	RST : in STD_LOGIC;
          CLK : in STD_LOGIC);
 
 end component; 
@@ -29,7 +30,7 @@ signal sDATA : STD_LOGIC_VECTOR(31 downto 0);
 
 signal sADDRESS: STD_LOGIC_VECTOR(7 downto 0);
 
-signal sCLK, sWAITMEM, sMEMBUSY: STD_LOGIC; 
+signal sCLK, sRST, sWAITMEM, sMEMBUSY: STD_LOGIC; 
 
 constant mem_rom : mem32_t(0 to 31) := mem32_init_f(control_unit_image, 32);
 
@@ -38,7 +39,7 @@ begin
 
 
 
-UUT : ROM_Memory port map ( DATA=>sDATA, ADDRESS=>sADDRESS, WAITMEM=>sWAITMEM, MEMBUSY=>sMEMBUSY, CLK => sCLK );
+UUT : ROM_Memory port map ( RST=>sRST, DATA=>sDATA, ADDRESS=>sADDRESS, WAITMEM=>sWAITMEM, MEMBUSY=>sMEMBUSY, CLK => sCLK );
 
 
 
@@ -65,48 +66,60 @@ process
     begin 
 
 	-- On initialise les entrees pour que rien ne se passe
+	sRST<='0'; 
 
 	sWAITMEM<='1';
 	sMEMBUSY<='1';
 	sADDRESS<="00000000";
 	
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	-- On met seulement sWAITMEM à 0
 
+	sRST<='1';
 	SWAITMEM<='0';
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	-- On met seulement MEMBUSY à 0
 
 	sWAITMEM<='1';
 	sMEMBUSY<='0';
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	-- On met les 2 à 0
 
 	sWAITMEM<='0';
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	-- On change la valeur de ADDRESS
 
 	sADDRESS<="00000001";
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	-- On change la valeur de ADDRESS
 
 	sADDRESS<="00000010";
-	wait for 30 ns;
-
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 	-- On change la valeur de ADDRESS
 
 	sADDRESS<="00001000";
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	-- On change la valeur de ADDRESS
 
 	sADDRESS<="11111111";
-	wait for 200 ns;
+	for i in 0 to 6 loop
+		wait until rising_edge(sCLK);
+	end loop;
+	wait for 5 ns;
+
 
    
 end process;

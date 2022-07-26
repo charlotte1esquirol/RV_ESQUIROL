@@ -17,6 +17,7 @@ package body rv_esquirol_pkg is
 	impure function mem32_init_f(init : mem32_t; depth : natural) return mem32_t is
     		variable mem_v : mem32_t(0 to depth-1);
   	begin
+		report "function mem32_init_f called" ;
     		mem_v := (others => (others => '0')); -- make sure remaining memory entries are set to zero
     		if (init'length > depth) then
       			return mem_v;

@@ -74,10 +74,10 @@ architecture Behavioral of item_controlu is
 
 
 signal RI_VALUE : STD_LOGIC_VECTOR ( 31 downto 0 );
-alias f3 : std_logic_vector is RI_VALUE ( 2 downto 0 );
-alias r1 : std_logic_vector is RI_VALUE ( 4 downto 0 );
-alias r2 : std_logic_vector is RI_VALUE ( 4 downto 0 );
-alias rd1 : std_logic_vector is RI_VALUE ( 4 downto 0 );
+alias f3 : std_logic_vector is RI_VALUE ( 14 downto 12 );
+alias r1 : std_logic_vector is RI_VALUE ( 19 downto 15 );
+alias r2 : std_logic_vector is RI_VALUE ( 24 downto 20 );
+alias rd1 : std_logic_vector is RI_VALUE ( 11 downto 7 );
 
 
 

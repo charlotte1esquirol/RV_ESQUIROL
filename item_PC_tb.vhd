@@ -88,11 +88,11 @@ process
 	sSEL2<='1';
 	wait for 30 ns;
 
-	siPC<='0';
-	wait for 30 ns;
+	--siPC<='0';
+	--wait for 30 ns;
 
-	swPC<='1';
-	wait for 50 ns;
+	--swPC<='1';
+	--wait for 50 ns;
 
 
 

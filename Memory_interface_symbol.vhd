@@ -87,8 +87,6 @@ architecture Behavioral of Memory_interface_symbol is
 
 	component MUX2TO1single 
 
-generic (
-	DWIDTH: natural := 32  );  -- Number of data bits per input/output
 
 port (
 	SEL: in std_logic;

@@ -62,18 +62,27 @@ process
 	-- On reset pour bien demarrer
 
 	sRST_ma<='0';
-	wait for 30 ns;
+	wait until rising_edge(sCLK_ma);
+	wait until rising_edge(sCLK_ma);
+	wait for 5 ns;
 
 	-- On initialise
 
 	sRST_ma<='1';
-	sPRDATA<="00000000000000000101000000010011";
+	sPRDATA<="00111111110000000101000000010011";
 	sPREADY<='1';
 	
-	wait for 30 ns; 
+	wait until rising_edge(sCLK_ma);
+	wait until rising_edge(sCLK_ma);
+	wait until rising_edge(sCLK_ma);
+	wait for 5 ns; 
 
-	sPREADY<='1';
-	wait for 30 ns;
+	sPREADY<='0';
+
+	wait until rising_edge(sCLK_ma);
+	wait until rising_edge(sCLK_ma);
+	wait until rising_edge(sCLK_ma);
+	wait for 55 ns;
 
 
 

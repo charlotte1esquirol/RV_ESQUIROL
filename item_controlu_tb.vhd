@@ -45,7 +45,7 @@ begin
 
 
 
-UUT : item_controlu port map ( Value_Imem=>sValue_Imem, Iim=>sIim, Sim=>sSim, Bim=>sBim, Jim=>sJim, CONTROL_signal=>sCONTROL_signal, MemBusy_co=>sMemBusy_co, CLK_co=>sCLK_co, RST_co=>sRST_co, wIR_co=>swIR_co, rs1=>srs1, rs2=>srs2, rd=>srd, funct3=>sfunct3 );
+UUT : item_controlu port map ( Value_Imem=>sValue_Imem, Uim=>sUim, Iim=>sIim, Sim=>sSim, Bim=>sBim, Jim=>sJim, CONTROL_signal=>sCONTROL_signal, MemBusy_co=>sMemBusy_co, CLK_co=>sCLK_co, RST_co=>sRST_co, wIR_co=>swIR_co, rs1=>srs1, rs2=>srs2, rd=>srd, funct3=>sfunct3 );
 
 process 
 
@@ -69,7 +69,8 @@ process
 	-- On reset pour bien demarrer
 
 	sRST_co<='0';
-	wait for 30 ns;
+	wait until rising_edge(sCLK_co);
+	wait for 5 ns;
 
 	-- On initialise
 
@@ -78,20 +79,25 @@ process
 	sMemBusy_co<='0';
 	swIR_co<='1';
 	
-	wait for 30 ns; 
+	wait until rising_edge(sCLK_co);
+	wait for 5 ns; 
 
 	swIR_co<='0';
-	wait for 30 ns;
+	wait until rising_edge(sCLK_co);
+	wait for 5 ns;
 
 	sValue_Imem<="00000000000000000001000000110011";
-	wait for 30 ns;
+	wait until rising_edge(sCLK_co);
+	wait for 5 ns;
 
 	swIR_co<='1';
 	sMemBusy_co<='1';
-	wait for 30 ns;
+	wait until rising_edge(sCLK_co);
+	wait for 5 ns;
 
 	sMemBusy_co<='0';
-	wait for 50 ns;
+	wait until rising_edge(sCLK_co);
+	wait for 5 ns;
 
 
 

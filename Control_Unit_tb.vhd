@@ -62,34 +62,41 @@ process
 
 	-- On reset pour bien demarrer
 
-	sRESET<='1';
-	wait for 30 ns;
+	sRESET<='0';
+	sMEMBUSY<='0';
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	-- On initialise
 
-	sRESET<='0';
+	sRESET<='1';
 	sMEMBUSY<='1';
 	sINSTR<="00000000000000000101000000010011";
 
-
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 	-- 
 
 	sMEMBUSY<='0';
 
-	wait for 30 ns; 
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	sINSTR<="01000000000000000101000000010011";
 
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	sINSTR<="00000000000000000001000000110011";
 
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 	-- On change MEMBUSY
 
 	sMEMBUSY<='1';
-	wait for 30 ns;
+	wait until rising_edge(sCLK);
+	wait for 5 ns;
 
 
 

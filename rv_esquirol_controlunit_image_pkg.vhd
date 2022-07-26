@@ -1,15 +1,15 @@
+-- Auto-generated memory initialization file from ihex file
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 library work;
 use work.rv_esquirol_pkg.all;
 
-
 -- Auto-generated memory initialization file from ihex file
 package rv_esquirol_controlunit_image_pkg is
 	constant control_unit_image : mem32_t := (
-		x"00000006",
-		x"40000011",
+		x"20000004",
+		x"60000031",
 		x"80000000",
 		x"80000000",
 		x"80000000",
@@ -17,12 +17,12 @@ package rv_esquirol_controlunit_image_pkg is
 		x"80000000",
 		x"80000000",
 		x"00000000",
-		x"00001004",
-		x"00000001",
+		x"00001006",
+		x"00000003",
 		x"800000c0",
 		x"00000000",
-		x"00003008",
-		x"80000001",
+		x"0000300a",
+		x"80000003",
 		x"80000000",
 		x"80000000",
 		x"80000000",

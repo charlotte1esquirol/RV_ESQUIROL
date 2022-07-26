@@ -41,11 +41,11 @@ process
 
     CLK <='0';
 
-        wait for 10 ns;
+        wait for 30 ns;
 
     CLK <='1';
 
-        wait for 10 ns;
+        wait for 30 ns;
 
     end process;
 
@@ -57,12 +57,60 @@ process
 	-- On reset pour bien demarrer
 
 	RST<='0';
-	wait for 30 ns;
+	wait until rising_edge(CLK);
 
 	-- On demarre
 
 	RST<='1';
-	wait for 300 ns;
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
+	wait until rising_edge(CLK);
 	
 end process;
 

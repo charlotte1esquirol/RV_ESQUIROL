@@ -7,7 +7,7 @@ use work.rv_esquirol_pkg.all;
 
 -- Auto-generated memory initialization file from ihex file
 package rv_esquirol_test_image_pkg is
-	constant test_image:   mem32_t := (
+	constant application_image:   mem32_t := (
 		x"0ff0000f",
 		x"0ff0000f",
 		x"00100013",

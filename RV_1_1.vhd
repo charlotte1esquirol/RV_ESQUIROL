@@ -143,7 +143,7 @@ generic (DWIDTH: natural := 32  );  -- Number of data bits per input/output
 	end component Memory_interface_symbol;
 
 
-signal wIR_intern : STD_LOGIC;
+
 signal MemBusy_intern : STD_LOGIC;
 signal Value_Imem_intern : STD_LOGIC_VECTOR( 31 downto 0);
 signal rd_intern : STD_LOGIC_VECTOR(4 downto 0);
@@ -181,6 +181,7 @@ alias idmem : std_logic is uINSTR ( 1 );
 alias selRD : std_logic is uINSTR ( 6 );
 alias rdmem : std_logic is uINSTR ( 2 );
 alias wrmem : std_logic is uINSTR ( 3 );
+alias wIR_intern : std_logic is uINSTR ( 4 );
 signal ZERO : std_logic;
 
 

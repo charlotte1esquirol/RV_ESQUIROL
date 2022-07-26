@@ -63,16 +63,26 @@ architecture Behavioral of Control_Unit is
         		DATA : out STD_LOGIC_VECTOR (31 downto 0);
          		WAITMEM : in STD_LOGIC;
 			MEMBUSY : in STD_LOGIC;
+			RST : in STD_LOGIC;
          		CLK : in STD_LOGIC);
 
 	end component ROM_Memory ;
+
+	component iPC_control 
+
+  Port (CONTROL :  in STD_LOGIC_VECTOR(31 downto 0);
+	WaitMem : in STD_LOGIC;
+	MemBusy : in STD_LOGIC;
+        CONTROLSIG :out STD_LOGIC_VECTOR(31 downto 0));
+
+	end component iPC_control  ;
 
 
 
 
 signal INUM, uCYCLE, uADDR, RESULTMUX1, ZERO: STD_LOGIC_VECTOR ( 7 downto 0 );
 
-signal uINSTR : STD_LOGIC_VECTOR ( 31 downto 0 );
+signal uINSTR, uINSTRMOD : STD_LOGIC_VECTOR ( 31 downto 0 );
 
 alias sFUNC3 : std_logic_vector(2 downto 0) is INSTRUCTION(14 downto 12);
 alias sFUNC7 : std_logic is INSTRUCTION( 30 );
@@ -93,9 +103,9 @@ begin
 	addresscounter1 : AddressCounter port map (WAITMEM=>sWAITMEM, MEMBUSY=>MEM_BUSY, LOAD=>EOF, LOAD_VAL=>INUM, VALU=>uCYCLE, RESTART => EOI, RESET=>RESET_A, CLK=>CLK_A );
 	mux1 : MUX2TO1 generic map (DWIDTH=>N) port map (SEL=>EOF, DATA0=>uCYCLE, DATA1=>INUM, RESULT=>RESULTMUX1);
 	mux2 : MUX2TO1 generic map (DWIDTH=>N) port map (SEL=>EOI, DATA0=>RESULTMUX1, DATA1=>ZERO, RESULT=>uADDR);
-	rommemory : ROM_Memory port map (ADDRESS=>uADDR, DATA=>CONTROL_SIG, WAITMEM=>sWAITMEM, MEMBUSY=>MEM_BUSY, CLK=>CLK_A );
-
-	CONTROL_SIG<=uINSTR;
+	rommemory : ROM_Memory port map (RST=>RESET_A, ADDRESS=>uADDR, DATA=>uINSTR, WAITMEM=>sWAITMEM, MEMBUSY=>MEM_BUSY, CLK=>CLK_A );
+	ipc : iPC_control port map ( CONTROL=>uINSTR, WaitMem=>sWAITMEM, MemBusy=>MEM_BUSY, CONTROLSIG=>uINSTRMOD);
+	CONTROL_SIG<=uINSTRMOD;
 	
 end architecture Behavioral;
 

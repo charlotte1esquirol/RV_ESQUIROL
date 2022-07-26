@@ -2,19 +2,18 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use work.rv_esquirol_pkg.all;
-use work.rv_esquirol_test_image_pkg.all;
+use work.rv_esquirol_application_image_pkg.all;
 
 
 
 
 entity InstrMemory is
 
-generic (X: natural := 16  );  -- Number of data bits per input/output
+generic (X: natural := 16  );  -- Number of address bits
 
 
   Port (
 	CLK : in STD_LOGIC;
-	RST : in STD_LOGIC;
 	PRDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
 	PREADY : out STD_LOGIC;
 	PADDRX : in STD_LOGIC_VECTOR ( X-1 downto 0 );
@@ -29,36 +28,30 @@ end InstrMemory;
 architecture Behavioral of InstrMemory is 
 
 
-constant mem_rom : mem32_t(0 to 31) := mem32_init_f(test_image, 32);
+constant mem_rom : mem32_t(0 to 2**X-1) := mem32_init_f(application_image, 2**X);
 
 alias B0 : std_logic is PSTRB ( 0 );
 alias B1 : std_logic is PSTRB ( 1 );
 alias B2 : std_logic is PSTRB ( 2 );
 alias B3 : std_logic is PSTRB ( 3 );
 
-signal DATA : STD_LOGIC_VECTOR ( 31 downto 0 );
-alias BYTE0 : std_logic_vector is DATA ( 7 downto 0 );
-alias BYTE1 : std_logic_vector is DATA ( 15 downto 8 );
-alias BYTE2 : std_logic_vector is DATA ( 23 downto 16 );
-alias BYTE3 : std_logic_vector is DATA ( 31 downto 24 );
 
-signal TABL : STD_LOGIC_VECTOR ( 31 downto 0 );
-alias T0 : std_logic_vector is TABL ( 7 downto 0 );
-alias T1 : std_logic_vector is TABL ( 15 downto 8 );
-alias T2 : std_logic_vector is TABL ( 23 downto 16 );
-alias T3 : std_logic_vector is TABL ( 31 downto 24 );
+alias BYTE0 : std_logic_vector is PRDATA ( 7 downto 0 );
+alias BYTE1 : std_logic_vector is PRDATA ( 15 downto 8 );
+alias BYTE2 : std_logic_vector is PRDATA ( 23 downto 16 );
+alias BYTE3 : std_logic_vector is PRDATA ( 31 downto 24 );
 
-signal ZERO : STD_LOGIC_VECTOR ( 7 downto 0 );
+
+constant ZERO : STD_LOGIC_VECTOR ( 7 downto 0 ) := "00000000";
 
 
 begin 
 
-    react: Process (clk, penable) is
+    react: Process (clk) is
 
     begin
 
-     TABL<=mem_rom(to_integer(unsigned(PADDRX)));
-     ZERO<="00000000";
+
 
 
      if rising_edge(clk) then
@@ -70,7 +63,7 @@ begin
 
 	    if ( B0 = '1' ) then
 	
-		BYTE0 <= T0;
+		BYTE0 <= mem_rom(to_integer(unsigned(PADDRX)))( 7 downto 0) ;
 
 	    else 
 		BYTE0 <= ZERO;
@@ -81,7 +74,7 @@ begin
 
             if ( B1 = '1' ) then
 	
-		BYTE1 <= T1;
+		BYTE1 <= mem_rom(to_integer(unsigned(PADDRX)))( 15 downto 8);
 
 	    else 
 		BYTE1 <= ZERO;
@@ -92,7 +85,7 @@ begin
 
             if ( B2 = '1' ) then
 	
-		BYTE2 <= T2;
+		BYTE2 <= mem_rom(to_integer(unsigned(PADDRX)))( 23 downto 16);
 
 	    else 
 		BYTE2 <= ZERO;
@@ -103,7 +96,7 @@ begin
 
             if ( B3 = '1' ) then
 	
-		BYTE3 <= T3;
+		BYTE3 <= mem_rom(to_integer(unsigned(PADDRX)))( 31 downto 24);
 
 	    else 
 		BYTE3 <= ZERO;
@@ -112,12 +105,14 @@ begin
 	
 	end if;
 
-	PREADY<=PENABLE; 
+
 
       end if;
 
    
     end process react;
+
+PREADY<=PENABLE; 
 
 
 end Behavioral;

@@ -75,18 +75,18 @@ process
 
 	-- On met seulement sLOAD à 1
 
-	SLOAD<='1';
-	wait for 50 ns;
+	--SLOAD<='1';
+	--wait for 50 ns;
 
 	-- On met seulement sINC à 0
 
 	sINC<='1';
-	sLOAD<='0';
-	wait for 50 ns;
+	--sLOAD<='0';
+	wait for 250 ns;
 
 	-- On met les 2 à 1
 
-	sLOAD<='1';
+	--sLOAD<='1';
 	wait for 50 ns;
 
 

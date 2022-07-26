@@ -32,7 +32,7 @@ begin
 		
 		strobes <= "00000011";
 
-	elsif ( size = "10" ) then
+	elsif ( size = "10" or size="11" ) then
 		
 		strobes <= "00001111";
 

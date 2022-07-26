@@ -14,6 +14,7 @@ entity ROM_Memory is
          DATA : out STD_LOGIC_VECTOR (31 downto 0);
          WAITMEM : in STD_LOGIC;
 	 MEMBUSY : in STD_LOGIC;
+	 RST : in STD_LOGIC;
          CLK : in STD_LOGIC);
 
 end ROM_Memory;
@@ -22,16 +23,19 @@ end ROM_Memory;
 architecture Behavioral of ROM_Memory is 
 
 
-constant mem_rom : mem32_t(0 to 31) := mem32_init_f(control_unit_image, 32);
+constant mem_rom : mem32_t(0 to 255) := mem32_init_f(control_unit_image, 256);
 
 begin 
 
-    react: Process (membusy, waitmem, clk) is
+    react: Process (rst, clk) is
 
     begin
 
+	if (RST='0') then
+		DATA<=(others=>'0');
 
-     if rising_edge(clk) then
+
+     elsif rising_edge(clk) then
 	
 	if (WAITMEM='0' or MEMBUSY='0') then
           -- clock edge reaction here

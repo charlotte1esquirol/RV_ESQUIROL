@@ -31,7 +31,7 @@ begin
 
 	if ( ENABLE='0' ) then
 		SEL <= "00";
-		NUM_SLAVE <="-";
+		--NUM_SLAVE <="-";
 
 	elsif ( ENABLE='1' ) then
 
@@ -48,7 +48,7 @@ begin
 			--NUM_SLAVE<="11";
 		else 
 			SEL<="00";
-			NUM_SLAVE<="-";
+			--NUM_SLAVE<="-";
 		
 		end if;
 		
