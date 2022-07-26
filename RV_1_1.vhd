@@ -206,7 +206,7 @@ ZERO<='0';
 	alumux : ALU_and_MUX port map ( RS1_VALUE=>rs1_value_intern, RS2_VALUE=>rs2_value_intern, PC_VALUE=>Address_to_Imem, I_IMMEDIATE=>I, U_IMMEDIATE=>U, S_IMMEDIATE=>S, SEL1ALU=>sel1alu_intern, SEL2ALU=>sel2alu_intern, SELOP=>selop_intern, ALU_VAL=>Address_to_Dmem); 
 	regfile : Regfile_2_clock_edge port map ( W_DATA=>rd_value_intern, W_ADDRESS=>rd_intern, W_COMMAND=>w_rd_intern, R0_ADDRESS=>rs1_intern, R1_ADDRESS=>rs2_intern, R0_DATA=>rs1_value_intern, R1_DATA=>rs2_value_intern, RESET=>RST_ma, CLK=>CLK_ma); 
 	muxaddress : MUX2TO1 port map ( DATA0=>Address_to_Imem, DATA1=>Address_to_Dmem, SEL=>idmem, RESULT=>Address_to_mem); 
-	muxrd : MUX2TO1 port map ( DATA0=>Address_to_Dmem, DATA1=>Address_to_Dmem, SEL=>selRD, RESULT=>rd_value_intern); 
+	muxrd : MUX2TO1 port map ( DATA0=>Address_to_Dmem, DATA1=>Value_from_Dmem, SEL=>selRD, RESULT=>rd_value_intern); 
 	memory : Memory_interface_symbol generic map (DWIDTH=>DWIDTH32) port map ( PRDATAm=>PRDATA, PREADYm=>PREADY, CLKm=>CLK_ma, RSTm=>RST_ma, rd_im=>rdmem, wr_im=>wrmem, addr_im=>Address_to_mem, size_im=>funct31, unsigned_im=>funct32, wdata_im=>rs2_value_intern, PADDRm=>PADDR, PSTRBm=>PSTRB, PWDATAm=>PWDATA, PWRITEm=>PWRITE, PENABLEm=>PENABLE, PREQm=>PREQ, busy_om=>MemBusy_intern, rdata_om=>Value_from_Dmem, rdata_unbuff_om=>Value_Imem_intern ); 
 
 

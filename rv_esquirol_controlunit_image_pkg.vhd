@@ -1,4 +1,3 @@
--- Auto-generated memory initialization file from ihex file
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
@@ -49,7 +48,7 @@ package rv_esquirol_controlunit_image_pkg is
 		x"80000000",
 		x"80000000",
 		x"80000000",
-		x"80000000",
+		x"00001080",
 		x"80000000",
 		x"80000000",
 		x"80000000",
