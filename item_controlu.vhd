@@ -70,14 +70,27 @@ architecture Behavioral of item_controlu is
 
 	end component Immediate ;
 
+	component fetching_size
+
+  Port (CONTROL :  in STD_LOGIC_VECTOR(31 downto 0);
+	funct3n2 : in STD_LOGIC_VECTOR(1 downto 0);
+	funcfetch : out STD_LOGIC_VECTOR( 1 downto 0));
+
+	end component fetching_size ;
 
 
 
-signal RI_VALUE : STD_LOGIC_VECTOR ( 31 downto 0 );
-alias f3 : std_logic_vector is RI_VALUE ( 14 downto 12 );
+
+
+signal RI_VALUE, uINSTR : STD_LOGIC_VECTOR ( 31 downto 0 );
+alias f3_bit2 : std_logic is RI_VALUE ( 14 );
+alias f3_bit10 : std_logic_vector is RI_VALUE( 13 downto 12 );
+alias f3_fetch : std_logic_vector is funct3 ( 1 downto 0 );
+alias f3_fetch_bit2 : std_logic is funct3 (2);
 alias r1 : std_logic_vector is RI_VALUE ( 19 downto 15 );
 alias r2 : std_logic_vector is RI_VALUE ( 24 downto 20 );
 alias rd1 : std_logic_vector is RI_VALUE ( 11 downto 7 );
+
 
 
 
@@ -90,10 +103,12 @@ begin
 
 	
 	IR1 : IR port map ( LOADVAL=>Value_Imem, CLK=>CLK_co, wIR=>wIR_co, MemBusy=>MemBusy_co, VALEUR=>RI_VALUE );
-	ControlUnit : Control_Unit generic map (DWIDTH=>DWIDTH32) port map (CLK_A=>CLK_co, RESET_A=>RST_co, MEM_BUSY=>MemBusy_co, INSTRUCTION=>Value_Imem, CONTROL_SIG=>CONTROL_signal);
+	ControlUnit : Control_Unit generic map (DWIDTH=>DWIDTH32) port map (CLK_A=>CLK_co, RESET_A=>RST_co, MEM_BUSY=>MemBusy_co, INSTRUCTION=>Value_Imem, CONTROL_SIG=>uINSTR);
 	Immediate1 : Immediate port map ( RI=>RI_VALUE, I=>Iim, S=>Sim, U=>Uim, B=>Bim, J=>Jim); 
+	fetch : fetching_size port map ( CONTROL=>uINSTR, funct3n2=>f3_bit10, funcfetch=>f3_fetch);
 
-	funct3 <= f3;
+	CONTROL_signal<=uINSTR;
+	f3_fetch_bit2 <= f3_bit2;
 	rs1 <= r1;
 	rs2 <= r2;
 	rd <= rd1;
